@@ -1,10 +1,10 @@
 {
   "development": {
     "username": "root",
-    "password": "1234",
+    "password": "root",
     "database": "nfticon",
-    "host": "127.0.0.1",
-    "port": "3308",
+    "host": "mysql.default.svc.cluster.local",
+    "port": "3306",
     "dialect": "mysql"
   },
   "test": {
@@ -15,10 +15,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "nft",
-    "password": "1234",
+    "username": "root",
+    "password": "root",
     "database": "nfticon",
-    "host": "127.0.0.1",
+    "host": "mysql.default.svc.cluster.local",
+    "port": "3306",
     "dialect": "mysql"
   }
 }

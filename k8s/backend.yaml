@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          # 이미지를 넣어주세요.
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_b263232835b8
+          env:
+            - name: DATABASE_URL
+              value: http://mysql.default.svc.cluster.local:3306;
+          resources:
+            requests:
+              memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 5050
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  labels:
+    app.kubernetes.io/managed-by: kargocd
+  name: backend
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: backend
+              servicePort: 80
+            # 여러분의 app path 를 넣어주세요.
+            path: /k2614d8d24025a(/|$)(.*)
