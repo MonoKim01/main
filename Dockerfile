@@ -1,5 +1,5 @@
 # 베이스 이미지 선택
-FROM node:14-alpine
+FROM node:16
 
 # 앱 디렉토리 생성
 WORKDIR /app/main
